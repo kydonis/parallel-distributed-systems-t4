@@ -1,4 +1,4 @@
-#include <time.h> // clock_gettime, timespec
+#include <time.h>
 #include <stdint.h>
 #include "stack.h"
 

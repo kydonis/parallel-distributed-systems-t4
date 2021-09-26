@@ -7,20 +7,9 @@ COMMON_INCLUDED_FILES=readmtx.c mmio.c coo2csc.c timer.c arrayutils.c controller
 
 default: all
 
-all: main
+all: v0
 
-main: v0
-
-#v0: v0.c utilities.c timer.c controller.c
-#	$(CC) $(CFLAGS) $(CBLAS) -o $@ $^
-#
-#v1: v1.c utilities.c timer.c controller.c read.c
-#	$(MPICC) $(CFLAGS) $(CBLAS) -o $@ $^
-#
-#v2: v2.c utilities.c timer.c controller.c read.c
-#	$(MPICC) $(CFLAGS) $(CBLAS) -o $@ $^
-
-v0: main.c
+v0: v0.c
 	$(CC) $(CFLAGS) -o $@ $^ $(COMMON_INCLUDED_FILES)
 
 clean:

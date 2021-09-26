@@ -5,9 +5,9 @@
 
 void saveOutput(struct Stack *results, char *filename) {
     FILE *f = fopen(filename, "wb");
-    struct Pair * pairs = getArrayCopy(results);
+    struct Pair **pairs = getArrayCopy(results);
     for (uint32_t i = 0; i < results->top; i++) {
-        fprintf(f, "%d, %d\n", pairs->x, pairs->y);
+        fprintf(f, "%d, %d\n", pairs[i]->x, pairs[i]->y);
     }
     fclose(f);
 }

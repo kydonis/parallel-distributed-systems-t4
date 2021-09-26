@@ -47,7 +47,7 @@ void cscSequentialV0(uint32_t *row1, uint32_t *col1, uint32_t *row2, uint32_t *c
                 struct Pair *pair = (struct Pair *) malloc(sizeof(struct Pair));
                 pair->x = curCol;
                 pair->y = curRow;
-                push(res, *pair);
+                push(res, pair);
             }
             free(fullRow);
             free(fullCol);

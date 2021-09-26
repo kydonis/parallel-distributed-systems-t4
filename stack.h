@@ -4,12 +4,12 @@
 #include <stdlib.h>
 
 struct Pair {
-    uint8_t x;
-    uint8_t y;
+    uint32_t x;
+    uint32_t y;
 };
 
 struct Stack {
-    uint8_t top;
+    uint32_t top;
     struct Pair *array;
 };
 
@@ -17,10 +17,10 @@ struct Stack *createStack();
 
 int isEmpty(struct Stack *stack);
 
-void push(struct Stack *stack, struct Pair item);
+void push(struct Stack *stack, struct Pair *item);
 
-struct Pair pop(struct Stack *stack);
+struct Pair *pop(struct Stack *stack);
 
-struct Pair *getArrayCopy(struct Stack *stack);
+struct Pair **getArrayCopy(struct Stack *stack);
 
 #endif //PARALLEL_DISTRIBUTED_SYSTEMS_T4_ARRAYLIST_H
