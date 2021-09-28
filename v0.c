@@ -34,8 +34,6 @@ void cscSequentialV0(uint32_t *row1, uint32_t *col1, uint32_t *row2, uint32_t *c
         for (uint32_t j = 0; j < nc; j++) {
             uint32_t curRow = i;
             uint32_t curCol = j;
-            if (curRow == curCol)
-                continue;
             uint32_t fullRowSize = col1[curRow + 1] - col1[curRow] + colSizes[curRow];
             uint32_t *fullRow = (uint32_t *)malloc(fullRowSize * sizeof(uint32_t));
             mergeArrays(row1 + col1[curRow], symmetricRowItems[curRow], fullRow, col1[curRow + 1] - col1[curRow], colSizes[curRow]);
