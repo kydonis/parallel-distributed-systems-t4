@@ -11,8 +11,8 @@ void cscSequentialV0(uint32_t *row1, uint32_t *col1, uint32_t *row2, uint32_t *c
     uint32_t *colSizes = (uint32_t *)malloc(nc * sizeof(uint32_t));
     zeroOutArray(colSizes, nc);
     for (uint32_t i = 0; i < nc; i++) {
-        for (uint32_t j = col1[i]; j < col1[i + 1]; j++) {
-            colSizes[row1[j]]++;
+        for (uint32_t j = col2[i]; j < col2[i + 1]; j++) {
+            colSizes[row2[j]]++;
         }
     }
 
@@ -31,9 +31,9 @@ void cscSequentialV0(uint32_t *row1, uint32_t *col1, uint32_t *row2, uint32_t *c
 
     // Multiply
     for (uint32_t i = 0; i < nc; i++) {
-        for (uint32_t j = col1[i]; j < col1[i + 1]; j++) {
+        for (uint32_t j = 0; j < nc; j++) {
             uint32_t curRow = i;
-            uint32_t curCol = row1[j];
+            uint32_t curCol = j;
             if (curRow == curCol)
                 continue;
             uint32_t fullRowSize = col1[curRow + 1] - col1[curRow] + colSizes[curRow];

@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include "stack.h"
 
 #ifndef PRESENTER_H
 #define PRESENTER_H
