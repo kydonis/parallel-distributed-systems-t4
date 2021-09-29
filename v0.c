@@ -29,17 +29,29 @@ void cscSequentialV0(uint32_t *row1, uint32_t *col1, uint32_t *row2, uint32_t *c
         }
     }
 
+    // Merge original with calculated symmetric csc values to form full rows and columns
+    uint32_t **fullRows = (uint32_t **) malloc(nc * sizeof(uint32_t *));
+    uint32_t **fullCols = (uint32_t **) malloc(nc * sizeof(uint32_t *));
+    for (uint32_t curRow = 0; curRow < nc; curRow++) {
+        uint32_t fullRowSize = col1[curRow + 1] - col1[curRow] + colSizes[curRow];
+        uint32_t *fullRow = (uint32_t *) malloc(fullRowSize * sizeof(uint32_t));
+        mergeArrays(row1 + col1[curRow], symmetricRowItems[curRow], fullRow, col1[curRow + 1] - col1[curRow], colSizes[curRow]);
+        fullRows[curRow] = fullRow;
+    }
+    for (uint32_t curCol = 0; curCol < nc; curCol++) {
+        uint32_t fullColSize = col1[curCol + 1] - col1[curCol] + colSizes[curCol];
+        uint32_t *fullCol = (uint32_t *)malloc(fullColSize * sizeof(uint32_t));
+        mergeArrays(row1 + col1[curCol], symmetricRowItems[curCol], fullCol, col1[curCol + 1] - col1[curCol], colSizes[curCol]);
+        fullCols[curCol] = fullCol;
+    }
+
     // Multiply
-    for (uint32_t i = 0; i < nc; i++) {
-        for (uint32_t j = 0; j < nc; j++) {
-            uint32_t curRow = i;
-            uint32_t curCol = j;
+    for (uint32_t curRow = 0; curRow < nc; curRow++) {
+        for (uint32_t curCol = 0; curCol < nc; curCol++) {
             uint32_t fullRowSize = col1[curRow + 1] - col1[curRow] + colSizes[curRow];
-            uint32_t *fullRow = (uint32_t *)malloc(fullRowSize * sizeof(uint32_t));
-            mergeArrays(row1 + col1[curRow], symmetricRowItems[curRow], fullRow, col1[curRow + 1] - col1[curRow], colSizes[curRow]);
             uint32_t fullColSize = col1[curCol + 1] - col1[curCol] + colSizes[curCol];
-            uint32_t *fullCol = (uint32_t *)malloc(fullColSize * sizeof(uint32_t));
-            mergeArrays(row1 + col1[curCol], symmetricRowItems[curCol], fullCol, col1[curCol + 1] - col1[curCol], colSizes[curCol]);
+            uint32_t *fullRow = fullRows[curRow];
+            uint32_t *fullCol = fullCols[curCol];
             uint32_t sum = countCommonElementsInSortedArrays(fullRow, fullCol, fullRowSize, fullColSize);
             if (sum > 0) {
                 struct Pair *pair = (struct Pair *) malloc(sizeof(struct Pair));
@@ -47,10 +59,15 @@ void cscSequentialV0(uint32_t *row1, uint32_t *col1, uint32_t *row2, uint32_t *c
                 pair->y = curRow;
                 push(res, pair);
             }
-            free(fullRow);
-            free(fullCol);
         }
     }
+
+    for (uint32_t i = 0; i < nc; i++) {
+        free(fullRows[i]);
+        free(fullCols[i]);
+    }
+    free(fullRows);
+    free(fullCols);
     for (uint32_t i = 0; i < nc; i++)
         free(symmetricRowItems[i]);
     free(symmetricRowItems);
