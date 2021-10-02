@@ -47,8 +47,7 @@ void mergeArrays(uint32_t *arr1, uint32_t *arr2, uint32_t *res, uint32_t length1
     }
 }
 
-uint32_t countCommonElementsInSortedArrays(uint32_t *arr1, uint32_t *arr2, uint32_t length1, uint32_t length2) {
-    uint32_t sum = 0;
+uint32_t existsCommonElementInSortedArrays(uint32_t *arr1, uint32_t *arr2, uint32_t length1, uint32_t length2) {
     uint32_t index1 = 0;
     uint32_t index2 = 0;
     while (index1 < length1 && index2 < length2) {
@@ -57,12 +56,10 @@ uint32_t countCommonElementsInSortedArrays(uint32_t *arr1, uint32_t *arr2, uint3
         } else if (arr1[index1] > arr2[index2]) {
             index2++;
         } else {
-            sum++;
-            index1++;
-            index2++;
+            return 1;
         }
     }
-    return sum;
+    return 0;
 }
 
 void cscMatrixVectorMultiplication(uint32_t *row, uint32_t *col, uint32_t *vector, uint32_t *res, uint32_t nc) {

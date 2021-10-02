@@ -52,7 +52,7 @@ void cscSequentialV0(uint32_t *row1, uint32_t *col1, uint32_t *row2, uint32_t *c
             uint32_t fullColSize = col1[curCol + 1] - col1[curCol] + colSizes[curCol];
             uint32_t *fullRow = fullRows[curRow];
             uint32_t *fullCol = fullCols[curCol];
-            uint32_t sum = countCommonElementsInSortedArrays(fullRow, fullCol, fullRowSize, fullColSize);
+            uint32_t sum = existsCommonElementInSortedArrays(fullRow, fullCol, fullRowSize, fullColSize);
             if (sum > 0) {
                 struct Pair *pair = (struct Pair *) malloc(sizeof(struct Pair));
                 pair->x = curCol;

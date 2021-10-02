@@ -10,7 +10,7 @@ struct Pair {
 
 struct Stack {
     uint32_t top;
-    struct Pair *array;
+    struct Pair **array;
 };
 
 struct Stack *createStack();
