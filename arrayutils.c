@@ -47,10 +47,10 @@ void mergeArrays(uint32_t *arr1, uint32_t *arr2, uint32_t *res, uint32_t length1
     }
 }
 
-uint32_t existsCommonElementInSortedArrays(uint32_t *arr1, uint32_t *arr2, uint32_t length1, uint32_t length2) {
-    uint32_t index1 = 0;
-    uint32_t index2 = 0;
-    while (index1 < length1 && index2 < length2) {
+uint32_t existsCommonElementInSortedArrays(uint32_t *arr1, uint32_t *arr2, uint32_t from1, uint32_t to1, uint32_t from2, uint32_t to2) {
+    uint32_t index1 = from1;
+    uint32_t index2 = from2;
+    while (index1 < to1 && index2 < to2) {
         if (arr1[index1] < arr2[index2]) {
             index1++;
         } else if (arr1[index1] > arr2[index2]) {
