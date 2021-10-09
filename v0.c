@@ -47,9 +47,10 @@ void cscSequentialV0(uint32_t *row1, uint32_t *col1, uint32_t *row2, uint32_t *c
 
     // Multiply
     for (uint32_t curRow = 0; curRow < nc; curRow++) {
-        for (uint32_t curCol = 0; curCol < nc; curCol++) {
-            uint32_t fullRowSize = col1[curRow + 1] - col1[curRow] + colSizes[curRow];
-            uint32_t fullColSize = col1[curCol + 1] - col1[curCol] + colSizes[curCol];
+        for (uint32_t j = col2[curRow]; j < col2[curRow + 1]; j++) { // Masking on second table given
+            uint32_t curCol = row1[j];
+            uint32_t fullRowSize = row1[curRow + 1] - row1[curRow] + colSizes[curRow];
+            uint32_t fullColSize = col2[curCol + 1] - col2[curCol] + colSizes[curCol];
             uint32_t *fullRow = fullRows[curRow];
             uint32_t *fullCol = fullCols[curCol];
             uint32_t sum = existsCommonElementInSortedArrays(fullRow, fullCol, fullRowSize, fullColSize);
