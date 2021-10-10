@@ -15,5 +15,8 @@ v1: v1.c readmtx.c mmio.c coo2csc.c coo2csr.c timer.c arrayutils.c controller.c 
 v2: v2.c readmtx.c mmio.c coo2csc.c coo2csr.c timer.c arrayutils.c stack.c serializationutils.c
 	$(MPICC) $(CFLAGS) -o $@ $^
 
+v3: v3.c readmtx.c mmio.c coo2csc.c coo2csr.c timer.c arrayutils.c stack.c serializationutils.c
+	$(MPICC) $(CFLAGS) -o $@ $^ -openmp
+
 clean:
 	rm -f v0
