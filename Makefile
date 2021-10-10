@@ -1,5 +1,5 @@
 CC=gcc-9
-#MPICC=mpicc
+MPICC=mpicc
 CFLAGS=-O3
 
 default: all
@@ -11,6 +11,9 @@ v0: v0.c readmtx.c mmio.c coo2csc.c coo2csr.c timer.c arrayutils.c controller.c 
 
 v1: v1.c readmtx.c mmio.c coo2csc.c coo2csr.c timer.c arrayutils.c controller.c stack.c serializationutils.c
 	$(CC) $(CFLAGS) -o $@ $^ -fopenmp
+
+v2: v2.c readmtx.c mmio.c coo2csc.c coo2csr.c timer.c arrayutils.c stack.c serializationutils.c
+	$(MPICC) $(CFLAGS) -o $@ $^
 
 clean:
 	rm -f v0

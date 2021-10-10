@@ -28,5 +28,5 @@ void runAndPresentResult(uint32_t *rows1Csc, uint32_t *cols1Csc, uint32_t *rows2
     printf("-----------------------------------\n");
     saveOutput(res, outputFilename);
     saveStats(name, time, resultsFilename);
-//    free(res);
+    free(res);
 }
