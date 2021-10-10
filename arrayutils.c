@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <time.h>
+#include <stdlib.h>
 
 uint32_t binarySearch(uint32_t *arr, uint32_t start, uint32_t end, uint32_t target) {
     while (start <= end) {
@@ -72,4 +74,48 @@ void cscMatrixVectorMultiplication(uint32_t *row, uint32_t *col, uint32_t *vecto
 
 uint32_t cmp(const void *a, const void *b) {
     return (*(uint32_t *)a - *(uint32_t *)b);
+}
+
+void createArray(uint32_t nc, uint32_t nr, double density) {
+
+    srand(time(NULL)); 
+
+    char mtxName[] = "outputMatrix.mtx";
+    int counter = 0;
+
+    FILE *outfile;
+
+    outfile = fopen (mtxName, "w");
+    if (outfile == NULL)
+    {
+        fprintf(stderr, "\nError opened file\n");
+        exit (1);
+    }
+
+
+    fprintf(outfile, "%%Random generated matrix");
+    fprintf(outfile, "                         ");
+
+    for (int j = 0; j < nr; j++){
+        for (int i = 0; i < nc; i++) {
+
+            double r = (double)rand()/RAND_MAX;
+
+            if (r < density) {
+
+                // printf("\nx: %d, y: %d", i, j);
+                fprintf(outfile, "\n%d %d", i, j);
+                counter++;
+            }
+        }
+    }
+
+    fseek(outfile, 0, SEEK_SET);
+    fprintf(outfile, "%%Random generated matrix");
+    fprintf(outfile, "\n%d %d %d", nr, nc, counter);
+    fclose(outfile);
+
+    printf("\nGenerated matrix with nr: %d, d: %d, nnz: %d", nr, nc, counter);
+    printf("\nFile name: %s\n", mtxName);
+
 }
