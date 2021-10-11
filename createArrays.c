@@ -1,11 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-
-
 #include "arrayutils.h"
-
-
 
 int main(int argc, char *argv[]) {
     if (argc < 5) {
@@ -19,6 +15,5 @@ int main(int argc, char *argv[]) {
     char *name = argv[4];
 
     createArray(nr, nc, density, name);
-
 
 }

@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <time.h>
 #include <stdlib.h>
+#include "mmio.h"
 
 uint32_t binarySearch(uint32_t *arr, uint32_t start, uint32_t end, uint32_t target) {
     while (start <= end) {
@@ -78,11 +79,10 @@ uint32_t cmp(const void *a, const void *b) {
 
 void createArray(uint32_t nc, uint32_t nr, double density, char *name) {
 
-    srand(time(NULL)); 
+    MM_typecode matcode; 
+    FILE *outfile;
 
     int counter = 0;
-
-    FILE *outfile;
 
     outfile = fopen (name, "w");
     if (outfile == NULL)
@@ -91,27 +91,47 @@ void createArray(uint32_t nc, uint32_t nr, double density, char *name) {
         exit (1);
     }
 
+    mm_initialize_typecode(&matcode);
+    mm_set_matrix(&matcode);
+    mm_set_coordinate(&matcode);
+    mm_set_real(&matcode);
 
-    fprintf(outfile, "%%Random generated matrix");
-    fprintf(outfile, "                         ");
 
-    for (int j = 0; j < nr; j++){
-        for (int i = 0; i < nc; i++) {
+    // mm_write_banner(outfile, matcode); 
+    // mm_write_mtx_crd_size(outfile, nc, nr, counter);
 
-            double r = (double)rand()/RAND_MAX;
+    srand(time(NULL)); 
 
-            if (r < density) {
 
-                // printf("\nx: %d, y: %d", i, j);
-                fprintf(outfile, "\n%d %d", i, j);
-                counter++;
+
+    // fprintf(outfile, "%%Random generated matrix");
+
+    mm_write_banner(outfile, matcode);
+    fprintf(outfile, "                  ");
+
+    for (int j = 1; j < nr; j++){
+        double r1 = (double)rand()/RAND_MAX;
+
+        if (r1 < density) {
+
+            for (int i = 1; i < nc; i++) {
+                double r2 = (double)rand()/RAND_MAX;
+
+                if (r2 < density && i != j) {
+                    // printf("\nx: %d, y: %d", i, j);
+                    fprintf(outfile, "%d %d\n", i, j);
+                    counter++;
+                }
             }
         }
     }
 
     fseek(outfile, 0, SEEK_SET);
-    fprintf(outfile, "%%Random generated matrix");
-    fprintf(outfile, "\n%d %d %d", nr, nc, counter);
+    
+    mm_write_banner(outfile, matcode); 
+    mm_write_mtx_crd_size(outfile, nc, nr, counter);
+    // fprintf(outfile, "%%Random generated matrix");
+    // fprintf(outfile, "\n%d %d %d", nr, nc, counter);
     fclose(outfile);
 
     printf("\nGenerated matrix with nr: %d, d: %d, nnz: %d", nr, nc, counter);

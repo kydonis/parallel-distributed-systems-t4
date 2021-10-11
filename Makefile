@@ -20,20 +20,20 @@ default: all
 
 all: $(EXECUTABLES)
 
-createArrays: createArrays.c  arrayutils.c
+createArrays: createArrays.c  arrayutils.c mmio.c
 	$(CC) $(CFLAGS) -o $@ $^
 
 v0: v0.c readmtx.c mmio.c coo2csc.c coo2csr.c timer.c arrayutils.c controller.c stack.c serializationutils.c
 	$(CC) $(CFLAGS) -o $@ $^
 
 v1: v1.c readmtx.c mmio.c coo2csc.c coo2csr.c timer.c arrayutils.c controller.c stack.c serializationutils.c
-	$(CC) $(CFLAGS) $(OPENMP) -o $@ $^ 
+	$(CC) $(CFLAGS) -o $@ $^ $(OPENMP)
 
 v2: v2.c readmtx.c mmio.c coo2csc.c coo2csr.c timer.c arrayutils.c stack.c serializationutils.c
 	$(MPICC) $(CFLAGS) -o $@ $^ -lm
 
 v3: v3.c readmtx.c mmio.c coo2csc.c coo2csr.c timer.c arrayutils.c stack.c serializationutils.c
-	$(MPICC) $(CFLAGS) $(OPENMP) -o $@ $^  -lm
+	$(MPICC) $(CFLAGS) -o $@ $^ $(OPENMP) -lm
 
 .PHONY: clean
 
