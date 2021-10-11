@@ -1,3 +1,4 @@
+#include <stdint.h>
 #include <stdlib.h>
 
 uint32_t countBits(uint32_t num) {

@@ -1,6 +1,7 @@
 #ifndef PARALLEL_DISTRIBUTED_SYSTEMS_T4_ARRAYLIST_H
 #define PARALLEL_DISTRIBUTED_SYSTEMS_T4_ARRAYLIST_H
 
+#include <stdint.h>
 #include <stdlib.h>
 
 struct Pair {

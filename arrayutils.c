@@ -76,16 +76,15 @@ uint32_t cmp(const void *a, const void *b) {
     return (*(uint32_t *)a - *(uint32_t *)b);
 }
 
-void createArray(uint32_t nc, uint32_t nr, double density) {
+void createArray(uint32_t nc, uint32_t nr, double density, char *name) {
 
     srand(time(NULL)); 
 
-    char mtxName[] = "outputMatrix.mtx";
     int counter = 0;
 
     FILE *outfile;
 
-    outfile = fopen (mtxName, "w");
+    outfile = fopen (name, "w");
     if (outfile == NULL)
     {
         fprintf(stderr, "\nError opened file\n");
@@ -116,6 +115,6 @@ void createArray(uint32_t nc, uint32_t nr, double density) {
     fclose(outfile);
 
     printf("\nGenerated matrix with nr: %d, d: %d, nnz: %d", nr, nc, counter);
-    printf("\nFile name: %s\n", mtxName);
+    printf("\nFile name: %s\n", name);
 
 }

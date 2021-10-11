@@ -17,6 +17,6 @@ void cscMatrixVectorMultiplication(uint32_t *row, uint32_t *col, uint32_t *vecto
 
 uint32_t cmp(const void *a, const void *b);
 
-void createArray(uint32_t nc, uint32_t nr, double density);
+void createArray(uint32_t nc, uint32_t nr, double density, char *name);
 
 #endif //ARRAYUTILS_H
