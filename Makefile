@@ -45,20 +45,24 @@ testCreateArray:
 	./createArrays 1000000 1000000 10000000 ./data/newArray.mtx
 
 testv0: 
-	@printf "\n** Testing v0 with mycielskian13 array\n"
-	./v0 ./data/mycielskian13.mtx
+	@printf "\n** Testing v0 masked with random array "
+	@printf "\n** nr: 1000000 nc: 1000000 nnz: 999999 \n"
+	./v0 ./data/array_04.mtx
 
 testv1: 
-	@printf "\n** Testing v1 using OpenMp with mycielskian13 array and 4 workers\n"
-	./v1 ./data/mycielskian13.mtx 4
+	@printf "\n** Testing v1 using OpenMp masked with random array and 4 workers"
+	@printf "\n** nr: 1000000 nc: 1000000 nnz: 999999 \n"
+	./v1 ./data/array_04.mtx 4
 
 testv2: 
-	@printf "\n** Testing v2 using MPI with random array and 4 tasks\n"
-	mpirun -np 4 ./v2 ./data/mycielskian13.mtx
+	@printf "\n** Testing v2 using MPI masked with random array and 4 tasks\n"
+	@printf "\n** nr: 1000000 nc: 1000000 nnz: 999999 \n"
+	mpirun -np 4 ./v2 ./data/array_04.mtx
 
 testv3: 
 	@printf "\n** Testing v3 using MPI and OpenMP with random array and 4 tasks\n"
-	mpirun -np 4 ./v3 ./data/mycielskian13.mtx
+	@printf "\n** nr: 1000000 nc: 1000000 nnz: 999999 \n"
+	mpirun -np 4 ./v3 ./data/array_04.mtx
 
 
 # ==========================================
