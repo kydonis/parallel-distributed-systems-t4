@@ -42,7 +42,7 @@ v3: v3.c readmtx.c mmio.c coo2csc.c coo2csr.c timer.c arrayutils.c stack.c seria
 
 testCreateArray:
 	@printf "\n** Creating a random array\n"
-	./createArrays 100 100 0.02 ./data/newArray.mtx
+	./createArrays 1000000 1000000 10000000 ./data/newArray.mtx
 
 testv0: 
 	@printf "\n** Testing v0 with mycielskian13 array\n"

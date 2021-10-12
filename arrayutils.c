@@ -77,7 +77,16 @@ uint32_t cmp(const void *a, const void *b) {
     return (*(uint32_t *)a - *(uint32_t *)b);
 }
 
-void createArray(uint32_t nc, uint32_t nr, double density, char *name) {
+int existsInArray(uint32_t *arr, uint32_t length, uint32_t element) {
+    for (uint32_t i = 0; i < length; i++) {
+        if (arr[i] == element) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void createArray(uint32_t nc, uint32_t nr, uint32_t targetNnz, char *name) {
     FILE *outfile = fopen (name, "w");
     if (outfile == NULL) {
         fprintf(stderr, "\nError opened file\n");
@@ -86,16 +95,29 @@ void createArray(uint32_t nc, uint32_t nr, double density, char *name) {
     srand(time(NULL));
 
     struct Stack *stack = createStack();
-    for (uint32_t i = 1; i <= nr; i++){
-        for (uint32_t j = 1; j <= nc; j++) {
-            double r2 = (double)rand()/RAND_MAX;
+    uint32_t *x = (uint32_t *) malloc(targetNnz * sizeof(uint32_t));
+    uint32_t *y = (uint32_t *) malloc(targetNnz * sizeof(uint32_t));
 
-            if (r2 < density && i != j) {
-                struct Pair *p = (struct Pair *) malloc(sizeof(struct Pair));
-                p->x = i;
-                p->y = j;
-                push(stack, p);
-            }
+    for (uint32_t i = 0; i < targetNnz; i++) {
+        x[i] = rand() % nc + 1;
+        y[i] = rand() % nc + 1;
+    }
+
+    qsort(x, targetNnz, sizeof(uint32_t), cmp);
+
+    uint32_t prevX = -1;
+    uint32_t lastIndexInY = -1;
+
+    for (uint32_t i = 0; i < targetNnz; i++) {
+        if (prevX != x[i] || lastIndexInY == -1 || !existsInArray(&y[lastIndexInY], i - 1 - lastIndexInY, y[i])) {
+            struct Pair *p = (struct Pair *) malloc(sizeof(struct Pair));
+            p->x = x[i];
+            p->y = y[i];
+            push(stack, p);
+        }
+        if (prevX != x[i]) {
+            prevX = x[i];
+            lastIndexInY = i;
         }
     }
 

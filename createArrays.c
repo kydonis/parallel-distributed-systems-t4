@@ -11,9 +11,9 @@ int main(int argc, char *argv[]) {
 
     uint32_t nr = atoi(argv[1]);
     uint32_t nc = atoi(argv[2]);
-    double density = atof(argv[3]);
+    uint32_t targetNnz = atof(argv[3]);
     char *name = argv[4];
 
-    createArray(nr, nc, density, name);
+    createArray(nr, nc, targetNnz, name);
 
 }
