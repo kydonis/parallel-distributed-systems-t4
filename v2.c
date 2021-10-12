@@ -13,7 +13,7 @@
 
 void cscDistributedV2(uint32_t *row1, uint32_t *col1, uint32_t *row2, uint32_t *col2, struct Stack *res, uint32_t nc, uint32_t offsetX, uint32_t offsetY) {
     for (uint32_t i = 0; i < nc; i++) {
-        for (uint32_t j = 0; j < nc; j++) {
+        for (uint32_t j = col1[i]; j < col1[i + 1]; j++) { // Masking on matrix A
             uint32_t exists = existsCommonElementInSortedArrays(row1, col2, col1[i], col1[i + 1], row2[j], row2[j + 1]);
             if (exists > 0) {
                 struct Pair *pair = (struct Pair *) malloc(sizeof(struct Pair));
