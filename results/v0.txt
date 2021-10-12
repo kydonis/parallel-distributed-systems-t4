@@ -1,0 +1,43 @@
+v0 results
+
+
+Running v0 for matrix: ./data/array_01.mtx
+Starting...
+-----------------------------------
+| Algorithm: V0 Sequential
+| Time:   0.000060
+-----------------------------------
+
+
+Running v0 for matrix: ./data/array_02.mtx
+Starting...
+-----------------------------------
+| Algorithm: V0 Sequential
+| Time:   0.003315
+-----------------------------------
+
+
+Running v0 for matrix: ./data/array_03.mtx
+Starting...
+-----------------------------------
+| Algorithm: V0 Sequential
+| Time:   0.004157
+-----------------------------------
+
+
+Running v0 for matrix: ./data/array_04.mtx
+Starting...
+-----------------------------------
+| Algorithm: V0 Sequential
+| Time:   0.018473
+-----------------------------------
+
+
+Running v0 for matrix: ./data/array_05.mtx
+Starting...
+-----------------------------------
+| Algorithm: V0 Sequential
+| Time:   1.052849
+-----------------------------------
+
+
