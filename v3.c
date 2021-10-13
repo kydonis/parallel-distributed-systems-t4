@@ -26,7 +26,7 @@ void cscDistributedOmpV3(uint32_t *row1, uint32_t *col1, uint32_t *row2, uint32_
         }
 #pragma omp critical
         {
-            for (int k = 0; k < localRes->top; k++) {
+            for (uint32_t k = 0; k < localRes->top; k++) {
                 push(res, localRes->array[k]);
             }
         }

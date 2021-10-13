@@ -53,7 +53,7 @@ struct Pair *pop(struct Stack *stack) {
 
 struct Pair **getArrayCopy(struct Stack *stack) {
     struct Pair **data = (struct Pair **) malloc(stack->top * sizeof(struct Pair *));
-    for (int i = 0; i < stack->top; i++) {
+    for (uint32_t i = 0; i < stack->top; i++) {
         data[i] = stack->array[i];
     }
     return data;
