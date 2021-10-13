@@ -18,7 +18,7 @@ echo "" >> ./results/v2.txt
 for file in ./data/*; do
 	echo "" >> ./results/v2.txt
 	echo "Running v2 for matrix: "$file >> ./results/v2.txt
-	for i in 2 4 8 16; do
+	for i in 4 16; do
 		srun -n $i ./v2 $file  >> ./results/v2.txt
 	done
 	echo "" >> ./results/v2.txt
