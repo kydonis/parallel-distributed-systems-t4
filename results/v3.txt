@@ -1,0 +1,44 @@
+v3 results
+
+
+Running v3 for matrix: ./data/array_01.mtx
+Starting...
+-----------------------------------
+| Algorithm: V3 MPI + OpenMP
+| Time:   0.026144
+-----------------------------------
+
+
+Running v3 for matrix: ./data/array_02.mtx
+Starting...
+-----------------------------------
+| Algorithm: V3 MPI + OpenMP
+| Time:   0.085114
+-----------------------------------
+
+
+Running v3 for matrix: ./data/array_03.mtx
+Starting...
+-----------------------------------
+| Algorithm: V3 MPI + OpenMP
+| Time:   0.399487
+-----------------------------------
+
+
+Running v3 for matrix: ./data/array_04.mtx
+Starting...
+-----------------------------------
+| Algorithm: V3 MPI + OpenMP
+| Time:   0.672515
+-----------------------------------
+
+
+Running v3 for matrix: ./data/array_05.mtx
+-----------------------------------
+| Algorithm: V3 MPI + OpenMP
+| Time:   3.013410
+-----------------------------------
+
+
+
+
