@@ -8,7 +8,6 @@
 ### Contents
    1. [How to build](#1)
    2. [Results from HPC](#2)
-   3. [Results](#3)
    
 <a name="1"></a>
 ### **How to build**  
@@ -49,10 +48,17 @@ To build and run these scripts you should contain a subfolder named "data" which
    + number of tasks: 4 16
    + creates the directory results and outputs for v0 file
 
+**Note**: The remaining script files (v0.sh, v2.sh) are in the [script](https://github.com/kydonis/parallel-distributed-systems-t4/tree/master/scripts) folder.
 
----
-<a name="3"></a>
-### **Results** 
+We created 5 arrays using the createArrays.c file in order to run the scripts with the HPC. 
+Specifically, we used the following arrays: 
+   + array_01.mtx (nr = 10000, nc = 10000, nnz =  926)
+   + array_02.mtx (nr = 100000, nc = 100000, nnz =  100370)
+   + array_03.mtx (nr = 1000000, nc = 1000000, nnz =  100000)
+   + array_04.mtx (nr = 1000000, nc = 1000000, nnz =  999999)
+   + array_05.mtx (nr = 1000000, nc = 1000000, nnz =  9999968)
+
+
 
 |     |  v0 |
 | --- | --- | 
@@ -65,7 +71,7 @@ To build and run these scripts you should contain a subfolder named "data" which
 | v1 |  2 | 4 | 8 | 16 | 20 |
 | --- | --- | --- | --- | --- | --- |
 | array_01 | 0.003175 | 0.002865 | 0.004934 | 0.007313 | 0.011521 |
-| array_02 | 0.026070 | 8.024627 | 0.041482 | 0.060982 | 0.069314 |
+| array_02 | 0.026070 | 0.024627 | 0.041482 | 0.060982 | 0.069314 |
 | array_03 | 0.175552 | 0.168070 | 0.286944 | 0.510560 | 0.560353 |
 | array_04 | 0.185006 | 0.169186 | 0.288766 | 0.481752 | 0.565193 |
 | array_05 | 0.726218 | 0.503463 | 0.289329 | 0.407794 | 0.525494 |
@@ -77,15 +83,15 @@ To build and run these scripts you should contain a subfolder named "data" which
 | array_02 | 0.040261 | 0.055346 |
 | array_03 | 0.055406 | 0.047880 |
 | array_04 | 0.307301 | 0.458496 |
-| array_05 | 3.130619 | - |
+| array_05 | 3.130619 | 3.343731 |
 
-|  v3  |  4 | 16 |
-| --- | --- | --- | 
-| array_01 | 0.026144 | - |
-| array_02 | 0.085114 | - |
-| array_03 | 0.399487 | - |
-| array_04 | 0.672515 | - |
-| array_05 | 3.013410 | - |
+|  v3  |  4 |
+| --- | --- |
+| array_01 | 0.026144 | 
+| array_02 | 0.085114 | 
+| array_03 | 0.399487 |
+| array_04 | 0.672515 | 
+| array_05 | 3.013410 | 
 
 
 
